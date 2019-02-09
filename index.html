@@ -86,13 +86,15 @@
     var computedNum, numLimit = 10,
       guessedNum, count = 0;
 
+    //Creates a new Game either if the site was loaded at the first time or if the user clicks at the button 'New game'
     function newGame() {
       computedNum = Math.round((Math.random() * numLimit) + 0.5);
       clearInput();
-      document.querySelector('#output').innerHTML = 'Try your luck! <br> Enter a number between <br> 1 and ' + numLimit +
-        '.';
+      document.querySelector('#output').innerHTML = 'Try your luck! <br> Enter a number between <br> 1 and ' +
+        numLimit + '.';
     }
 
+    //Get the the entered value of the user at the input field and inkrements the count of attempts by 1
     function getGuess() {
       var num = document.querySelector('#input').value;
       count++;
@@ -100,11 +102,17 @@
       checkGuess(guessedNum, computedNum);
     }
 
+    //Clears the input field and set the cursor on it
     function clearInput() {
       document.querySelector('#input').value = '';
       document.querySelector('#input').focus();
     }
 
+    //Compares the guessed and the computed number
+    //If the guessed number is too small or too big, the func writes an appropriate hint into the output field
+    //If the guessed matched with the computed number, the func writes a appropriate txt with 
+    //the searched number into the output field
+    //After the winner message it writes the count of attempts into the output field
     function checkGuess(guessedNum, computedNum) {
       document.querySelector('#output').innerText = '';
       if (guessedNum > computedNum) {
