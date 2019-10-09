@@ -1,145 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <style>
-    body{
-      padding: 0;
-      margin: 0;
-      background-image: linear-gradient(90deg, white ,blue 25vw, blue 25vw, blue 75vw, white);
-    }
-    #main{
-      height: 100vh;
-      width: 50vw;
-      margin: 0px auto;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      background-color: blue;
-    }
-
-    #heading{
-      width: 90%;
-      height: 10vh;
-      margin-top: 1%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: white;
-      font-size: 40px;
-      font-weight: bold;
-      text-align: center;
-      border-radius: 10px;
-      box-shadow: 4px 4px 4px gray inset, -4px -4px 4px gray inset;
-    }
-
-    #output{
-      height: 40vh;
-      width: 90%;
-      margin-top: 5%;
-      background-color: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 30px;
-      font-weight: bold;
-      text-align: center;
-      border-radius: 10px;
-      box-shadow: 5px 5px 5px gray inset, -5px -5px 5px gray inset;
-    }
-
-    #input{
-      width: 90%;
-      height: 10vh;
-      margin-top: 10%;
-      text-align: center;
-      border-radius: 10px;
-      box-shadow: 4px 4px 4px gray inset, -4px -4px 4px gray inset;
-    }
-
-    button{
-      width: 30%;
-      height: 5vh;
-      margin-top: 5%;
-      border-radius: 10px;
-      box-shadow: 1px 1px 5px gray;
-    }
-  </style>
-  <title>Guess numbers</title>
-</head>
-
-<body>
-
-  <main id="main">
-    <h1 id="heading">Guess numbers</h1>
-    <ouput id="output"></ouput>
-    <input type="text" id="input" placeholder="Enter your number">
-    <button type="text" id="guess">Guess</button>
-    <button type="text" id="newGame">New game</button>
-  </main>
-
-
-  <script>
-    var computedNum, numLimit = 10,
-      guessedNum, count = 0;
-
-    //Creates a new Game either if the site was loaded at the first time or if the user clicks at the button 'New game'
-    function newGame() {
-      computedNum = Math.round((Math.random() * numLimit) + 0.5);
-      clearInput();
-      document.querySelector('#output').innerHTML = 'Try your luck! <br> Enter a number between <br> 1 and ' +
-        numLimit + '.';
-    }
-
-    //Get the the entered value of the user at the input field and inkrements the count of attempts by 1
-    function getGuess() {
-      var num = document.querySelector('#input').value;
-      count++;
-      guessedNum = parseInt(num);
-      checkGuess(guessedNum, computedNum);
-    }
-
-    //Clears the input field and set the cursor on it
-    function clearInput() {
-      document.querySelector('#input').value = '';
-      document.querySelector('#input').focus();
-    }
-
-    //Compares the guessed and the computed number
-    //If the guessed number is too small or too big, the func writes an appropriate hint into the output field
-    //If the guessed matched with the computed number, the func writes a appropriate txt with 
-    //the searched number into the output field
-    //After the winner message it writes the count of attempts into the output field
-    function checkGuess(guessedNum, computedNum) {
-      document.querySelector('#output').innerText = '';
-      if (guessedNum > computedNum) {
-        document.querySelector('#output').innerHTML = 'The number ' + guessedNum + ' is too big. <br> Try again.';
-        clearInput();
-
-      } else if (guessedNum < computedNum) {
-        document.querySelector('#output').innerHTML = 'The number ' + guessedNum + ' is too small. <br> Try again.';
-        clearInput();
-
-      } else if (computedNum === guessedNum) {
-        document.querySelector('#output').innerHTML = 'Yeah, right! <br> The number searched <br> was ' + computedNum +
-          '!';
-        clearInput();
-        setTimeout(() => {
-          document.querySelector('#output').innerText = 'You needed ' + count + ' attempts!';
-        }, 2000);
-
+  <!-- Trying github -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+        background-image: linear-gradient(
+          90deg,
+          white,
+          blue 25vw,
+          blue 25vw,
+          blue 75vw,
+          white
+        );
+      }
+      #main {
+        height: 100vh;
+        width: 50vw;
+        margin: 0px auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: blue;
       }
 
-    }
+      #heading {
+        width: 90%;
+        height: 10vh;
+        margin-top: 1%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: white;
+        font-size: 40px;
+        font-weight: bold;
+        text-align: center;
+        border-radius: 10px;
+        box-shadow: 4px 4px 4px gray inset, -4px -4px 4px gray inset;
+      }
 
-    window.addEventListener('DOMContentLoaded', newGame);
-    document.querySelector('#guess').addEventListener('click', getGuess);
-    document.querySelector('#newGame').addEventListener('click', newGame);
-  </script>
+      #output {
+        height: 40vh;
+        width: 90%;
+        margin-top: 5%;
+        background-color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 30px;
+        font-weight: bold;
+        text-align: center;
+        border-radius: 10px;
+        box-shadow: 5px 5px 5px gray inset, -5px -5px 5px gray inset;
+      }
 
-</body>
+      #input {
+        width: 90%;
+        height: 10vh;
+        margin-top: 10%;
+        text-align: center;
+        border-radius: 10px;
+        box-shadow: 4px 4px 4px gray inset, -4px -4px 4px gray inset;
+      }
 
+      button {
+        width: 30%;
+        height: 5vh;
+        margin-top: 5%;
+        border-radius: 10px;
+        box-shadow: 1px 1px 5px gray;
+      }
+    </style>
+    <title>Guess numbers</title>
+  </head>
+
+  <body>
+    <main id="main">
+      <h1 id="heading">Guess numbers</h1>
+      <ouput id="output"></ouput>
+      <input type="text" id="input" placeholder="Enter your number" />
+      <button type="text" id="guess">Guess</button>
+      <button type="text" id="newGame">New game</button>
+    </main>
+
+    <script>
+      var computedNum,
+        numLimit = 10,
+        guessedNum,
+        count = 0;
+
+      //Creates a new Game either if the site was loaded at the first time or if the user clicks at the button 'New game'
+      function newGame() {
+        computedNum = Math.round(Math.random() * numLimit + 0.5);
+        clearInput();
+        document.querySelector('#output').innerHTML =
+          'Try your luck! <br> Enter a number between <br> 1 and ' +
+          numLimit +
+          '.';
+      }
+
+      //Get the the entered value of the user at the input field and inkrements the count of attempts by 1
+      function getGuess() {
+        var num = document.querySelector('#input').value;
+        count++;
+        guessedNum = parseInt(num);
+        checkGuess(guessedNum, computedNum);
+      }
+
+      //Clears the input field and set the cursor on it
+      function clearInput() {
+        document.querySelector('#input').value = '';
+        document.querySelector('#input').focus();
+      }
+
+      //Compares the guessed and the computed number
+      //If the guessed number is too small or too big, the func writes an appropriate hint into the output field
+      //If the guessed matched with the computed number, the func writes a appropriate txt with
+      //the searched number into the output field
+      //After the winner message it writes the count of attempts into the output field
+      function checkGuess(guessedNum, computedNum) {
+        document.querySelector('#output').innerText = '';
+        if (guessedNum > computedNum) {
+          document.querySelector('#output').innerHTML =
+            'The number ' + guessedNum + ' is too big. <br> Try again.';
+          clearInput();
+        } else if (guessedNum < computedNum) {
+          document.querySelector('#output').innerHTML =
+            'The number ' + guessedNum + ' is too small. <br> Try again.';
+          clearInput();
+        } else if (computedNum === guessedNum) {
+          document.querySelector('#output').innerHTML =
+            'Yeah, right! <br> The number searched <br> was ' +
+            computedNum +
+            '!';
+          clearInput();
+          setTimeout(() => {
+            document.querySelector('#output').innerText =
+              'You needed ' + count + ' attempts!';
+          }, 2000);
+        }
+      }
+
+      window.addEventListener('DOMContentLoaded', newGame);
+      document.querySelector('#guess').addEventListener('click', getGuess);
+      document.querySelector('#newGame').addEventListener('click', newGame);
+    </script>
+  </body>
 </html>
